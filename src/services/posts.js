@@ -1,41 +1,56 @@
-import { defineAsyncComponent } from "vue";
+import { Marked } from "marked"
+import { markedHighlight } from "marked-highlight"
+import fm from "front-matter"
+import hljs from "highlight.js"
 
-const modules = import.meta.glob("/src/posts/*.md");
+const marked = new Marked(
+	markedHighlight({
+		langPrefix: "hljs language-",
+		highlight(code, lang) {
+			const language = hljs.getLanguage(lang) ? lang : "plaintext"
+			return hljs.highlight(code, { language }).value
+		},
+	})
+)
 
-const fetchAllPosts = () => {
-  let posts = [];
+export const fetchAllPosts = async () => {
+	try {
+		let getAllPosts = []
+		const posts = import.meta.glob("../posts/*.md")
+		for (const post in posts) {
+			const fileName = post.substring(
+				post.indexOf("posts/") + 6,
+				post.lastIndexOf(".md")
+			)
 
-  try {
-    for (const path in modules) {
-      const importName = path.substring(
-        path.indexOf("-") + 1,
-        path.lastIndexOf(".md")
-      );
-      const fileLocation = path.substring(
-        path.indexOf("posts/") + 6,
-        path.lastIndexOf(".md")
-      );
-      posts.push({ importName, fileLocation });
-    }
-    return posts;
-  } catch (error) {
-    return error;
-  }
-};
+			const markdownText = await import(`../posts/${fileName}.md?raw`)
 
-export const importModules = () => {
-  const posts = fetchAllPosts();
-  let importComponents = [];
-  try {
-    for (const moduleInfo of posts) {
-      const { importName, fileLocation } = moduleInfo;
-      importComponents.push(
-        defineAsyncComponent(() => import(`../posts/${fileLocation}.md`))
-      );
-      console.log(`${importName} module imported successfully.`);
-    }
-    return importComponents;
-  } catch (error) {
-    console.error(`Error importing the module:`, error);
-  }
-};
+			const { attributes: frontmatter } = fm(markdownText.default)
+
+			getAllPosts.push({
+				frontmatter,
+			})
+		}
+		return await Promise.resolve(getAllPosts)
+	} catch (error) {
+		return await Promise.reject(error)
+	}
+}
+
+export const getPost = async (fileName) => {
+	try {
+		const markdownText = await import(`../posts/${fileName}.md?raw`)
+
+		const { attributes: frontmatter, body: content } = fm(markdownText.default)
+
+		const htmlContent = marked.parse(content)
+
+		const post = {
+			frontmatter: frontmatter,
+			content: htmlContent,
+		}
+		return await Promise.resolve(post)
+	} catch (error) {
+		return await Promise.reject(error)
+	}
+}

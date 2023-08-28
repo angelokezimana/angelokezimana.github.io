@@ -1,16 +1,21 @@
 <script setup>
-import { importModules } from "/src/services/posts.js";
+	import { onMounted, ref } from "vue"
+	import { fetchAllPosts } from "/src/services/posts.js"
 
-let importComponents = importModules();
+	const posts = ref([])
+
+	onMounted(async () => {
+		posts.value = await fetchAllPosts()
+	})
 </script>
 <template>
   <div>
     <h1>Blog Posts</h1>
-    <div v-for="PostComponent in importComponents">
-      <component :is="PostComponent" class="prose prose-a:text-blue-600 ml-1" />
-      <hr>
-    </div>
-  </div>
+		<div v-for="post in posts" :key="post.frontmatter.id">
+			<router-link :to="{ name: 'GetPost',params: { id: post.frontmatter.id }}">{{ post.frontmatter.title }}</router-link>
+			<hr />
+		</div>
+	</div>
 </template>
 <style>
 
