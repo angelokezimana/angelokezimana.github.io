@@ -16,8 +16,7 @@
 	<div v-if="post">
 		<h1>#{{ post.frontmatter?.title }}</h1>
 		<p>{{ post.frontmatter?.date }}</p>
-		<div v-html="post.content" class="prose prose-a:text-blue-600 ml-1"></div>
-		<hr />
+		<div v-html="post.content" class="ml-4"></div>
 	</div>
 </template>
 <style>
