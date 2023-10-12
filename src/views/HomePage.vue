@@ -36,19 +36,19 @@
 
 			<a
 				href="/assets/cv.pdf"
-				class="mr-2 px-7 py-3 md:px-9 md:py-4 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500"
+				class="block sm:inline mr-0 mb-2 sm:mr-2 sm:mb-0 px-7 py-3 md:px-9 md:py-4 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500"
 				target="_blank"
 				>Get my CV</a
 			>
 			<a
 				href="https://github.com/angelokezimana"
-				class="mr-2 px-7 py-3 md:px-9 md:py-4 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500"
+				class="block sm:inline mr-0 mb-2 sm:mr-2 sm:mb-0 px-7 py-3 md:px-9 md:py-4 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500"
 				target="_blank"
 				>Github</a
 			>
 			<a
 				href="https://www.linkedin.com/in/angelokezimana/"
-				class="px-7 py-3 md:px-9 md:py-4 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500"
+				class="block sm:inline px-7 py-3 md:px-9 md:py-4 font-medium md:font-semibold bg-gray-700 text-gray-50 text-sm rounded-md hover:bg-gray-50 hover:text-gray-700 transition ease-linear duration-500"
 				target="_blank"
 				>LinkedIn</a
 			>
