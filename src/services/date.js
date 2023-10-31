@@ -1,16 +1,23 @@
 const getDaySuffix = (day) => {
+	const superscriptD = String.fromCharCode(0x1d48) // ᵈ
+	const superscriptH = String.fromCharCode(0x02b0) // ʰ
+	const superscriptN = String.fromCharCode(0x207F) // ⁿ
+	const superscriptR = String.fromCharCode(0x02b3) // ʳ
+	const superscriptS = String.fromCharCode(0x02E2) // ˢ
+	const superscriptT = String.fromCharCode(0x1d57) // ᵗ
+
 	if (day >= 11 && day <= 13) {
-		return "th"
+		return `${superscriptT}${superscriptH}`
 	}
 	switch (day % 10) {
 		case 1:
-			return "st"
+			return `${superscriptS}${superscriptT}`
 		case 2:
-			return "nd"
+			return `${superscriptN}${superscriptD}`
 		case 3:
-			return "rd"
+			return `${superscriptR}${superscriptD}`
 		default:
-			return "th"
+			return `${superscriptT}${superscriptH}`
 	}
 }
 
