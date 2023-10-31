@@ -1,6 +1,7 @@
 <script setup>
 	import { onMounted, ref } from "vue"
 	import { fetchAllPosts } from "../services/posts.js"
+	import { formatDate } from "../services/date.js"
 
 	const posts = ref([])
 
@@ -19,9 +20,11 @@
 				<div
 					v-for="post in posts"
 					:key="post.frontmatter.id"
-					class="bg-gray-50 px-8 py-10 rounded-md"
+					class="transition ease-in-out delay-100 bg-white px-8 py-10 rounded-md hover:shadow-2xl"
 				>
-					<h4 class="font-medium text-gray-700 text-lg mb-4">Aug 16th, 2023</h4>
+					<h4 class="font-medium text-gray-700 text-lg mb-4">
+						{{ formatDate(new Date(post.frontmatter.date)) }}
+					</h4>
 
 					<p class="font-normal text-gray-500 text-md mb-4">
 						<router-link
