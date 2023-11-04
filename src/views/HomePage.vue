@@ -10,7 +10,7 @@
 	const posts = ref([])
 
 	onMounted(async () => {
-		posts.value = await fetchAllPosts()
+		posts.value = (await fetchAllPosts()).reverse().slice(0,3)
 	})
 </script>
 <template>

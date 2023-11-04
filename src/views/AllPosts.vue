@@ -6,7 +6,7 @@
 	const posts = ref([])
 
 	onMounted(async () => {
-		posts.value = await fetchAllPosts()
+		posts.value = (await fetchAllPosts()).reverse()
 	})
 </script>
 <template>
