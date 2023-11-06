@@ -19,8 +19,8 @@
 			<h1 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5">
 				{{ post.frontmatter?.title }}
 			</h1>
-			<p>{{ formatDate(new Date(post.frontmatter?.date)) }}</p>
-			<div v-html="post.content" class="ml-4"></div>
+			<p class="font-medium text-gray-700">{{ formatDate(new Date(post.frontmatter?.date)) }}</p>
+			<div v-html="post.content" class="ml-4 prose lg:prose-xl"></div>
 			<button
 				@click="$router.back()"
 				class="mt-4 px-2 py-1 font-semibold text-md rounded-md bg-gray-700 text-white hover:bg-gray-500 transition ease-linear duration-500"
